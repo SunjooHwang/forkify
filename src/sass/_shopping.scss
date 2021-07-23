@@ -1,0 +1,31 @@
+.shopping {
+  &-list {
+    padding: 3rem 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: $color-primary;
+  }
+
+  &-items {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+
+    .shopping-item {
+      display: flex;
+      flex-direction: row;
+      padding: 1rem 0.25rem;
+      .item {
+        font-size: 2rem;
+      }
+    }
+  }
+}
