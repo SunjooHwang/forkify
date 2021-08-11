@@ -160,14 +160,10 @@ export const uploadRecipe = async function (newRecipe) {
 
 export const addToShoppingList = function (recipe) {
   const ingredients = recipe.ingredients;
-  console.log(ingredients);
 
   if (state.shoppingList.length === 0) {
     state.shoppingList.push(...ingredients);
-    console.log(state.shoppingList);
-  } else if (state.shoppingList.length !== 0) {
-    console.log(state.shoppingList);
-    console.log(ingredients);
+  } else {
     const newShoppingList = Object.values(
       [...ingredients, ...state.shoppingList].reduce(
         (sum, { quantity, unit, description }) => {
@@ -182,18 +178,8 @@ export const addToShoppingList = function (recipe) {
         {}
       )
     );
-    console.log(newShoppingList);
+
     state.shoppingList = [];
-    state.shoppingList.push(newShoppingList);
+    state.shoppingList.push(...newShoppingList);
   }
-
-  // if so, ingredients[i].quantity += state.shoppingList[j].quantity and return ingredients[i]
-
-  // if not, return ingredients[i]
-
-  // push ingredients[i] to newShoppingList
-
-  // push newShoppingList to state.shoppingList
-
-  console.log(state.shoppingList);
 };

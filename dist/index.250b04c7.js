@@ -735,13 +735,9 @@ const uploadRecipe = async function (newRecipe) {
 };
 const addToShoppingList = function (recipe) {
   const ingredients = recipe.ingredients;
-  console.log(ingredients);
   if (state.shoppingList.length === 0) {
     state.shoppingList.push(...ingredients);
-    console.log(state.shoppingList);
-  } else if (state.shoppingList.length !== 0) {
-    console.log(state.shoppingList);
-    console.log(ingredients);
+  } else {
     const newShoppingList = Object.values([...ingredients, ...state.shoppingList].reduce((sum, {quantity, unit, description}) => {
       sum[description] = {
         description,
@@ -750,15 +746,9 @@ const addToShoppingList = function (recipe) {
       };
       return sum;
     }, {}));
-    console.log(newShoppingList);
     state.shoppingList = [];
-    state.shoppingList.push(newShoppingList);
+    state.shoppingList.push(...newShoppingList);
   }
-  // if so, ingredients[i].quantity += state.shoppingList[j].quantity and return ingredients[i]
-  // if not, return ingredients[i]
-  // push ingredients[i] to newShoppingList
-  // push newShoppingList to state.shoppingList
-  console.log(state.shoppingList);
 };
 
 },{"./config.js":"6pr2F","./helpers.js":"581KF","./views/addRecipeView.js":"4ieaQ","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"6pr2F":[function(require,module,exports) {
@@ -2393,16 +2383,13 @@ class ShoppingListView extends _ViewJsDefault.default {
     const markup = `
       <li class="shopping-item">
         <span class="item item__desc">${ingredient.description}</span>
-        <span class="item item__qty">${ingredient.quantity}</span>
+        <span class="item item__qty">${ingredient.quantity ? ',' + ingredient.quantity : ''}</span>
         <span class="item item__unit">${ingredient.unit}</span>
       </li>
       `;
     return markup;
   }
   _generateMarkup() {
-    // console.log(
-    // this._data[0].map(ing => this._generateMarkupShoppingItem(ing)).join('')
-    // );
     return this._data.map(ing => this._generateMarkupShoppingItem(ing)).join('');
   }
 }

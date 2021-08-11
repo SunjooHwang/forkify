@@ -135,8 +135,10 @@ const controlAddIngredient = function () {
 const controlAddToShoppingList = function () {
   // 1) Add to shopping list
   model.addToShoppingList(model.state.recipe);
+
   // 2) Render shopping list
   shoppingListView.render(model.state.shoppingList);
+
   // 3) Update shopping list if model.state.shoppinglist.length != 0
 };
 

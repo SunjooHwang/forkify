@@ -17,7 +17,9 @@ class ShoppingListView extends View {
     const markup = `
       <li class="shopping-item">
         <span class="item item__desc">${ingredient.description}</span>
-        <span class="item item__qty">${ingredient.quantity}</span>
+        <span class="item item__qty">${
+          ingredient.quantity ? ',' + ingredient.quantity : ''
+        }</span>
         <span class="item item__unit">${ingredient.unit}</span>
       </li>
       `;
@@ -25,9 +27,6 @@ class ShoppingListView extends View {
   }
 
   _generateMarkup() {
-    // console.log(
-    //   this._data[0].map(ing => this._generateMarkupShoppingItem(ing)).join('')
-    // );
     return this._data
       .map(ing => this._generateMarkupShoppingItem(ing))
       .join('');

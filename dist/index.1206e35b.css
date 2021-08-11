@@ -508,16 +508,24 @@ body {
   display: flex;
   flex-direction: column;
   list-style: none;
+  padding: 0 1rem;
 }
 .shopping-items .shopping-item {
   display: flex;
   flex-direction: row;
-  padding: 1rem 0.25rem;
+  line-height: 4rem;
 }
 .shopping-items .shopping-item .item {
   font-size: 2rem;
 }
-
+.shopping-items .shopping-item .item__desc {
+  text-transform: capitalize;
+  padding-right: 1rem;
+}
+.shopping-items .shopping-item .item__qty {
+  font-weight: bold;
+  padding-right: 0.5rem;
+}
 .recipe {
   background-color: #f9f5f3;
 }
@@ -529,7 +537,8 @@ body {
 .recipe__fig::before {
   content: "";
   display: block;
-  height: 100%;
+  height: 32rem !important;
+  min-height: 32rem !important;
   width: 100%;
   position: absolute;
   top: 0;

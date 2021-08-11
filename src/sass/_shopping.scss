@@ -19,12 +19,24 @@
     flex-direction: column;
     list-style: none;
 
+    padding: 0 1rem;
+
     .shopping-item {
       display: flex;
       flex-direction: row;
-      padding: 1rem 0.25rem;
+      line-height: 4rem;
       .item {
         font-size: 2rem;
+      }
+      .item__desc {
+        text-transform: capitalize;
+        padding-right: 1rem;
+      }
+      .item__qty {
+        font-weight: bold;
+        padding-right: 0.5rem;
+      }
+      .item__unit {
       }
     }
   }
