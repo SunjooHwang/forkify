@@ -557,6 +557,12 @@ const controlAddToShoppingList = function () {
   // 2) Render shopping list
   _viewsShoppingListViewJsDefault.default.render(_modelJs.state.shoppingList);
 };
+const controlEmptyShoppingList = function () {
+  // empty all itmes from shopping list
+  _modelJs.emptyShoppingList();
+  // render shoppinglist
+  _viewsShoppingListViewJsDefault.default.render(_modelJs.state.shoppingList);
+};
 const init = function () {
   _viewsBookmarksViewJsDefault.default.addHandlerRender(controlBookmarks);
   _viewsRecipeViewJsDefault.default.addHandlerRender(controlRecipes);
@@ -566,7 +572,8 @@ const init = function () {
   _viewsPaginationViewJsDefault.default.addHandlerClick(controlPagination);
   _viewsAddRecipeViewJsDefault.default.addHandlerUpload(controlAddRecipe);
   _viewsAddRecipeViewJsDefault.default.addHandlerAddIngredient(controlAddIngredient);
-  _viewsShoppingListViewJsDefault.default.addHandlerShoppingList(controlAddToShoppingList);
+  _viewsShoppingListViewJsDefault.default.addHandlerAddToShoppingList(controlAddToShoppingList);
+  _viewsShoppingListViewJsDefault.default.addHandlerEmptyShoppingList(controlEmptyShoppingList);
 };
 init();
 
@@ -599,6 +606,9 @@ _parcelHelpers.export(exports, "uploadRecipe", function () {
 });
 _parcelHelpers.export(exports, "addToShoppingList", function () {
   return addToShoppingList;
+});
+_parcelHelpers.export(exports, "emptyShoppingList", function () {
+  return emptyShoppingList;
 });
 var _configJs = require('./config.js');
 var _helpersJs = require('./helpers.js');
@@ -749,6 +759,9 @@ const addToShoppingList = function (recipe) {
     state.shoppingList = [];
     state.shoppingList.push(...newShoppingList);
   }
+};
+const emptyShoppingList = function () {
+  if (state.shoppingList.length !== 0) state.shoppingList = [];
 };
 
 },{"./config.js":"6pr2F","./helpers.js":"581KF","./views/addRecipeView.js":"4ieaQ","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"6pr2F":[function(require,module,exports) {
@@ -2352,6 +2365,8 @@ _parcelHelpers.defineInteropFlag(exports);
 require('regenerator-runtime');
 var _ViewJs = require('./View.js');
 var _ViewJsDefault = _parcelHelpers.interopDefault(_ViewJs);
+var _urlImgIconsSvg = require('url:../../img/icons.svg');
+var _urlImgIconsSvgDefault = _parcelHelpers.interopDefault(_urlImgIconsSvg);
 function _defineProperty(obj, key, value) {
   if ((key in obj)) {
     Object.defineProperty(obj, key, {
@@ -2368,23 +2383,31 @@ function _defineProperty(obj, key, value) {
 class ShoppingListView extends _ViewJsDefault.default {
   constructor(...args) {
     super(...args);
-    _defineProperty(this, "_parentElement", document.querySelector('.shopping-items'));
+    _defineProperty(this, "_parentElement", document.querySelector('.shopping-list'));
     _defineProperty(this, "_recipeElement", document.querySelector('.recipe'));
+    _defineProperty(this, "_errorMessage", 'Your shopping list is currently empty!');
   }
-  addHandlerShoppingList(handler) {
+  addHandlerAddToShoppingList(handler) {
     this._recipeElement.addEventListener('click', function (e) {
       const btn = e.target.closest('.btn--shopping');
-      console.log(this);
       if (!btn) return;
       handler();
     });
   }
+  addHandlerEmptyShoppingList(handler) {
+    const btn = document.querySelector('.btn--empty');
+    btn.addEventListener('click', handler);
+  }
   _generateMarkupShoppingItem(ingredient) {
     const markup = `
-      <li class="shopping-item">
-        <span class="item item__desc">${ingredient.description}</span>
-        <span class="item item__qty">${ingredient.quantity ? ',' + ingredient.quantity : ''}</span>
-        <span class="item item__unit">${ingredient.unit}</span>
+      <li class="shopping-list__item">
+        <svg class="shopping-list__item__icon">
+          <use href="${_urlImgIconsSvgDefault.default}#icon-check"></use>
+          &nbsp;  
+        </svg>
+        <span class="item-info item__qty">${ingredient.quantity ? ingredient.quantity : ''}</span>
+        <span class="item-info item__unit">&nbsp;${ingredient.unit}</span>
+        <span class="item-info item__desc">&nbsp;${ingredient.description}</span>
       </li>
       `;
     return markup;
@@ -2395,7 +2418,7 @@ class ShoppingListView extends _ViewJsDefault.default {
 }
 exports.default = new ShoppingListView();
 
-},{"regenerator-runtime":"62Qib","./View.js":"48jhP","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"3rYQ6":[function(require,module,exports) {
+},{"regenerator-runtime":"62Qib","./View.js":"48jhP","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","url:../../img/icons.svg":"3t5dV"}],"3rYQ6":[function(require,module,exports) {
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 _parcelHelpers.defineInteropFlag(exports);
 function _defineProperty(obj, key, value) {

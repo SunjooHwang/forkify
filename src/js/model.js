@@ -183,3 +183,7 @@ export const addToShoppingList = function (recipe) {
     state.shoppingList.push(...newShoppingList);
   }
 };
+
+export const emptyShoppingList = function () {
+  if (state.shoppingList.length !== 0) state.shoppingList = [];
+};

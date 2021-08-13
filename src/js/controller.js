@@ -142,6 +142,13 @@ const controlAddToShoppingList = function () {
   // 3) Update shopping list if model.state.shoppinglist.length != 0
 };
 
+const controlEmptyShoppingList = function () {
+  // empty all itmes from shopping list
+  model.emptyShoppingList();
+  // render shoppinglist
+  shoppingListView.render(model.state.shoppingList);
+};
+
 const init = function () {
   bookmarksView.addHandlerRender(controlBookmarks);
   recipeView.addHandlerRender(controlRecipes);
@@ -151,7 +158,8 @@ const init = function () {
   paginationView.addHandlerClick(controlPagination);
   addRecipeView.addHandlerUpload(controlAddRecipe);
   addRecipeView.addHandlerAddIngredient(controlAddIngredient);
-  shoppingListView.addHandlerShoppingList(controlAddToShoppingList);
+  shoppingListView.addHandlerAddToShoppingList(controlAddToShoppingList);
+  shoppingListView.addHandlerEmptyShoppingList(controlEmptyShoppingList);
 };
 
 init();

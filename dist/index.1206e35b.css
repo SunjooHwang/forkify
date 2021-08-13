@@ -491,7 +491,7 @@ body {
   color: #918581;
 }
 
-.shopping-list {
+.shopping {
   padding: 3rem 0;
   display: flex;
   flex-direction: column;
@@ -504,28 +504,40 @@ body {
   text-align: center;
   color: #f38e82;
 }
-.shopping-items {
+.shopping .btn--empty {
+  font-family: inherit;
+  justify-content: center;
+  margin: 0 1rem;
+  font-weight: 600;
+}
+.shopping-list {
   display: flex;
   flex-direction: column;
   list-style: none;
-  padding: 0 1rem;
+  padding: 0 2rem 2rem 2rem;
 }
-.shopping-items .shopping-item {
+.shopping-list__item {
   display: flex;
-  flex-direction: row;
-  line-height: 4rem;
+  padding: 1rem 0;
 }
-.shopping-items .shopping-item .item {
-  font-size: 2rem;
+.shopping-list__item__icon {
+  height: 2rem;
+  width: 2rem;
+  fill: #fbdb89;
+  flex: 0 0 auto;
+  margin-right: 1.1rem;
 }
-.shopping-items .shopping-item .item__desc {
-  text-transform: capitalize;
-  padding-right: 1rem;
+.shopping-list__item .item-info {
+  font-size: 1.6rem;
+  color: #615551;
 }
-.shopping-items .shopping-item .item__qty {
-  font-weight: bold;
-  padding-right: 0.5rem;
+.shopping-list__item .item-qty {
+  flex: 0 0 auto;
 }
+.shopping-list__item .item-desc {
+  flex: 0 0 auto;
+}
+
 .recipe {
   background-color: #f9f5f3;
 }
